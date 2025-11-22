@@ -14,7 +14,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -64,32 +63,23 @@ class TaskListView extends VerticalLayout {
         taskGrid.addClassName("jira-backlog-grid");
         taskGrid.setItems(query -> taskService.list(toSpringPageRequest(query)).stream());
         taskGrid.addColumn(Task::getDescription).setHeader("Description");
-        taskGrid.addColumn(task -> Optional.ofNullable(task.getDueDate()).map(dateFormatter::format).orElse("Never"))
-                .setHeader("Due Date");
+        taskGrid.addColumn(task -> Optional.ofNullable(task.getDueDate()).map(dateFormatter::format).orElse("Never"))                .setHeader("Due Date");
         taskGrid.addColumn(task -> dateTimeFormatter.format(task.getCreationDate())).setHeader("Creation Date");
         taskGrid.setEmptyStateText("You have no tasks to complete");
-        taskGrid.setSizeFull();
+        taskGrid.setWidthFull();
+        taskGrid.setAllRowsVisible(true);
         taskGrid.addThemeVariants(GridVariant.LUMO_COMPACT);
         taskGrid.setSelectionMode(Grid.SelectionMode.SINGLE);
-
-        // Configure drag and drop with ON_TOP mode
         taskGrid.setRowsDraggable(true);
         taskGrid.setDropMode(GridDropMode.ON_TOP);
-
-        // DragFilter - only allow dragging tasks with descriptions longer than 3 characters
         taskGrid.setDragFilter(task -> task.getDescription().length() > 3);
-
-        // DropFilter - only allow dropping on tasks that have a due date
         taskGrid.setDropFilter(task -> task.getDueDate() != null);
-
         taskGrid.addDragStartListener(event -> {
             draggedTask = event.getDraggedItems().stream().findFirst().orElse(null);
         });
-
         taskGrid.addDragEndListener(event -> {
             draggedTask = null;
         });
-
         taskGrid.addDropListener(event -> {
             var targetTask = event.getDropTargetItem();
 
@@ -102,13 +92,16 @@ class TaskListView extends VerticalLayout {
             }
         });
 
-        setSizeFull();
-        setPadding(false);
-        setSpacing(false);
-        getStyle().setOverflow(Style.Overflow.HIDDEN);
+        setWidthFull();
+        addClassName("grid-panel-container");
+
+        // Create a panel to wrap the grid
+        var gridPanel = new VerticalLayout(taskGrid);
+        gridPanel.setWidthFull();
+        gridPanel.addClassName("grid-panel");
 
         add(new ViewToolbar("Task List", ViewToolbar.group(description, dueDate, createBtn)));
-        add(taskGrid);
+        add(gridPanel);
     }
 
     private void createTask() {

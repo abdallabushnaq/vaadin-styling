@@ -1,13 +1,33 @@
 /* Add your styles here */
 
 /* ========================================
-   Styles for TaskListView Grid
+   Styles for TaskListView
    ======================================== */
+
+/* Main view container with outer padding */
+.grid-panel-container {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Gray panel wrapper for the grid */
+.grid-panel {
+    background-color: var(--lumo-contrast-5pct);
+    border-radius: var(--lumo-border-radius-l);
+    padding: 8px;
+}
 
 /* Regular CSS - styles the host element (outside shadow DOM) */
 .jira-backlog-grid {
-    border: 2px solid red !important;
 }
+
+/*
+.main-layout {
+    background-color: var(--lumo-contrast-5pct);
+}
+*/
 
 /* ========================================
    SHADOW DOM STYLING - THE WORKING APPROACH

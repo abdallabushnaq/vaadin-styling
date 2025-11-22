@@ -19,6 +19,7 @@ import com.vaadin.flow.server.menu.MenuEntry;
 public final class MainLayout extends AppLayout {
 
     MainLayout() {
+        addClassName("main-layout"); // scope CSS to this layout
         setPrimarySection(Section.DRAWER);
         addToDrawer(createHeader(), new Scroller(createSideNav()));
     }

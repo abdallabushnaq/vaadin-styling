@@ -8,11 +8,11 @@
 
 /* Apply hover to all grids by default */
 [part~="row"]:hover [part~="body-cell"] {
-  background-color: lightgray !important;
+  background-color: var(--lumo-contrast-10pct) !important;
 }
 
 /* Alternative targeting */
-tbody tr:hover td {
+/*tbody tr:hover td {
   background-color: lightgray !important;
-}
+}*/
 

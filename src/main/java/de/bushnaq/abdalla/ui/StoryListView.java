@@ -87,29 +87,22 @@ class StoryListView extends VerticalLayout {
         // Configure drag and drop with BETWEEN mode
         storyGrid.setRowsDraggable(true);
 
-        // DragFilter - only allow dragging stories with story points assigned
         storyGrid.setDragFilter(story -> {
-//            log.info("DragFilter check for story '{}': storyPoints={} return {}", story.getTitle(), story.getStoryPoints(), story.getStoryPoints() != null && story.getStoryPoints() > 0);
             return story.getStoryPoints() != null && story.getStoryPoints() > 0;
         });
-
-        // DropFilter - only allow dropping between stories that have a target date
         storyGrid.setDropFilter(story -> {
             log.info("DropFilter check for story '{}': targetDate={} return {}", story.getTitle(), story.getTargetDate(), story.getTargetDate() != null);
             return story.getTargetDate() != null;
         });
-
         storyGrid.addDragStartListener(event -> {
             log.info("DragStartListener invoked");
             storyGrid.setDropMode(GridDropMode.BETWEEN);
             draggedStory = event.getDraggedItems().stream().findFirst().orElse(null);
         });
-
         storyGrid.addDragEndListener(event -> {
             draggedStory = null;
             storyGrid.setDropMode(null);
         });
-
         storyGrid.addDropListener(event -> {
             var targetStory = event.getDropTargetItem();
 
@@ -123,13 +116,18 @@ class StoryListView extends VerticalLayout {
             }
         });
 
-        setSizeFull();
-        setPadding(false);
-        setSpacing(false);
+        storyGrid.setWidthFull();
+        storyGrid.setAllRowsVisible(true);
         getStyle().setOverflow(Style.Overflow.HIDDEN);
 
         add(new ViewToolbar("Story List", ViewToolbar.group(title, targetDate, storyPoints, createBtn)));
-        add(storyGrid);
+
+        addClassName("grid-panel-container");
+        var gridPanel = new VerticalLayout(storyGrid);
+        gridPanel.setWidthFull();
+        gridPanel.addClassName("grid-panel");
+
+        add(gridPanel);
     }
 
     private void createStory() {
