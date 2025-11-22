@@ -1,0 +1,30 @@
+/* Add your styles here */
+
+/* ========================================
+   Styles for TaskListView Grid
+   ======================================== */
+
+/* Regular CSS - styles the host element (outside shadow DOM) */
+.jira-backlog-grid {
+    border: 2px solid red !important;
+}
+
+/* ========================================
+   SHADOW DOM STYLING - THE WORKING APPROACH
+   ======================================== */
+
+/* In Vaadin 24, component-specific styles are automatically loaded
+   from the components/ folder.
+
+   The file: themes/default/components/vaadin-grid.css
+   Contains styles that are automatically injected into ALL vaadin-grid
+   shadow DOMs in the application.
+
+   This is the recommended approach for styling Vaadin components!
+
+   Example structure:
+   - components/vaadin-grid.css      -> styles all grids
+   - components/vaadin-button.css    -> styles all buttons
+   - components/vaadin-text-field.css -> styles all text fields
+*/
+

@@ -1,0 +1,18 @@
+/* Styles for vaadin-grid component */
+/* These styles are automatically injected into vaadin-grid shadow DOM */
+
+/* Hover effect for grid rows */
+:host([theme~="row-hover"]) [part~="row"]:hover [part~="body-cell"] {
+  background-color: lightgray;
+}
+
+/* Apply hover to all grids by default */
+[part~="row"]:hover [part~="body-cell"] {
+  background-color: lightgray !important;
+}
+
+/* Alternative targeting */
+tbody tr:hover td {
+  background-color: lightgray !important;
+}
+
