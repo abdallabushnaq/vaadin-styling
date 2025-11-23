@@ -1,25 +1,18 @@
-/* Add your styles here */
+/* Add your styles here for elements not in the shadow dom*/
 
-/* ========================================
-   Styles for SprintsView
-   ======================================== */
-
-/* Main sprints view container */
-/*.sprints-view {
-    padding: 24px;
-    gap: 32px;
-}*/
-
-/* Individual sprint section */
 .sprint-grid-panel-wrapper {
     margin-left: 24px;
     margin-right: 24px;
     margin-top: 12px;
     margin-bottom: 12px;
-/*    margin-bottom: 32px;*/
 }
 
-/* Sprint header styling */
+.sprint-grid-panel {
+    background-color: var(--lumo-contrast-5pct);
+    border-radius: 0 0 var(--lumo-border-radius-l) var(--lumo-border-radius-l);
+    padding: 8px;
+}
+
 .sprint-header {
     padding: 16px 24px;
     background-color: var(--lumo-contrast-5pct);
@@ -40,63 +33,3 @@
     color: var(--lumo-secondary-text-color);
     margin-top: 8px;
 }
-
-/* Grid panel for each sprint */
-.sprint-grid-panel {
-    background-color: var(--lumo-contrast-5pct);
-    border-radius: 0 0 var(--lumo-border-radius-l) var(--lumo-border-radius-l);
-    padding: 8px;
-}
-
-/* TreeGrid specific styling */
-.sprint-tree-grid {
-}
-
-/* ========================================
-   Legacy TaskListView Styles (for reference)
-   ======================================== */
-
-/* Main view container with outer padding */
-/*.task-list-view {
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-}*/
-
-/* Gray panel wrapper for the grid */
-/*.task-grid-panel {
-    background-color: var(--lumo-contrast-5pct);
-    border-radius: var(--lumo-border-radius-l);
-    padding: 8px;
-}*/
-
-/* TreeGrid specific styling */
-.jira-backlog-grid {
-}
-
-/*
-.main-layout {
-    background-color: var(--lumo-contrast-5pct);
-}
-*/
-
-/* ========================================
-   SHADOW DOM STYLING - THE WORKING APPROACH
-   ======================================== */
-
-/* In Vaadin 24, component-specific styles are automatically loaded
-   from the components/ folder.
-
-   The file: themes/default/components/vaadin-grid.css
-   Contains styles that are automatically injected into ALL vaadin-grid
-   shadow DOMs in the application.
-
-   This is the recommended approach for styling Vaadin components!
-
-   Example structure:
-   - components/vaadin-grid.css      -> styles all grids
-   - components/vaadin-button.css    -> styles all buttons
-   - components/vaadin-text-field.css -> styles all text fields
-*/
-
