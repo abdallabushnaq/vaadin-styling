@@ -54,23 +54,18 @@ class SprintsView extends VerticalLayout {
     }
 
     private TreeGrid<Task> createSprintGrid(Sprint sprint) {
-        var dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
-                .withZone(ZoneId.systemDefault());
-        var dateFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
-
-        var grid = new TreeGrid<Task>();
+        var dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withZone(ZoneId.systemDefault());
+        var dateFormatter     = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM);
+        var grid              = new TreeGrid<Task>();
         grid.addClassName("sprint-tree-grid");
-
         // Set up hierarchical data provider for this sprint
         grid.setItems(taskService.getStoriesBySprint(sprint), taskService::getChildTasks);
 
         // Add columns
         grid.addColumn(Task::getTaskType).setHeader("Type").setWidth("100px").setFlexGrow(0);
         grid.addHierarchyColumn(Task::getDescription).setHeader("Description");
-        grid.addColumn(task -> Optional.ofNullable(task.getDueDate()).map(dateFormatter::format).orElse("Never"))
-                .setHeader("Due Date").setWidth("150px").setFlexGrow(0);
-        grid.addColumn(task -> dateTimeFormatter.format(task.getCreationDate()))
-                .setHeader("Creation Date").setWidth("200px").setFlexGrow(0);
+        grid.addColumn(task -> Optional.ofNullable(task.getDueDate()).map(dateFormatter::format).orElse("Never")).setHeader("Due Date").setWidth("150px").setFlexGrow(0);
+        grid.addColumn(task -> dateTimeFormatter.format(task.getCreationDate())).setHeader("Creation Date").setWidth("200px").setFlexGrow(0);
 
         grid.setEmptyStateText("No stories in this sprint");
         grid.setWidthFull();
