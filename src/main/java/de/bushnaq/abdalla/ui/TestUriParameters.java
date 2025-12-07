@@ -70,22 +70,6 @@ class TestUriParameters extends VerticalLayout implements BeforeEnterObserver, A
 
     @Override
     public void afterNavigation(AfterNavigationEvent event) {
-        log.info("== afterNavigation start");
-
-        // Only load data once per view instance (per refresh)
-        if (!dataLoaded) {
-            log.info("Loading sprint data for the first time");
-            dataLoaded = true;
-            log.info("Sprint data loaded, dataLoaded flag set to true");
-        } else {
-            log.info("Sprint data already loaded, skipping reload");
-        }
-        log.info("== afterNavigation end");
-        log.info("");
-    }
-
-    @Override
-    public void beforeEnter(BeforeEnterEvent event) {
         log.info("");
         log.info("== beforeEnter start");
         // Capture and log URL parameters when navigating to the page
@@ -104,6 +88,23 @@ class TestUriParameters extends VerticalLayout implements BeforeEnterObserver, A
         // Populate multi-select boxes from URL parameters (or clear them if no params)
         populateMultiSelectFromUrl(parametersMap);
         log.info("== beforeEnter end");
+
+        log.info("== afterNavigation start");
+
+        // Only load data once per view instance (per refresh)
+        if (!dataLoaded) {
+            log.info("Loading sprint data for the first time");
+            dataLoaded = true;
+            log.info("Sprint data loaded, dataLoaded flag set to true");
+        } else {
+            log.info("Sprint data already loaded, skipping reload");
+        }
+        log.info("== afterNavigation end");
+        log.info("");
+    }
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent event) {
     }
 
     private void populateMultiSelectFromUrl(Map<String, List<String>> parametersMap) {
