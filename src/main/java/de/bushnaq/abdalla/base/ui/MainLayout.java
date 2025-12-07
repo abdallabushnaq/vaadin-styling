@@ -10,13 +10,19 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.router.Layout;
 import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Layout
 public final class MainLayout extends AppLayout {
+
+    private final Map<Tab, String> tabToPathMap = new HashMap<>();
 
     MainLayout() {
         addClassName("main-layout"); // scope CSS to this layout
@@ -50,4 +56,5 @@ public final class MainLayout extends AppLayout {
             return new SideNavItem(menuEntry.title(), menuEntry.path());
         }
     }
+
 }
