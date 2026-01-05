@@ -1,4 +1,4 @@
-/* Add your styles here for elements not in the shadow dom*/
+@import "vaadin-grid.css";
 
 .sprints-view {
     padding-left: 24px;
