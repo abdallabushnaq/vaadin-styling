@@ -1,20 +1,9 @@
-/* Styles for vaadin-grid component */
-/* These styles are automatically injected into vaadin-grid shadow DOM */
 
-/*
-:host([theme~="row-hover"]) [part~="row"]:hover [part~="body-cell"] {
-  background-color: lightgray;
-}
-*/
-
-/* Apply hover to all grids by default */
-[vaadin-grid::part="body-cell"]:hover {
-  /*background-color: var(--lumo-contrast-10pct) !important;*/
-  background-color: red !important;
+vaadin-grid-cell-content:hover {
+    background-color: var(--lumo-contrast-10pct);
 }
 
-[vaadin-item {
-  /*background-color: var(--lumo-contrast-10pct) !important;*/
-  background-color: red !important;
+vaadin-item:hover {
+    background-color: var(--lumo-contrast-10pct);
 }
 

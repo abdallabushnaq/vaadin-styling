@@ -57,6 +57,7 @@ class TestUriParameters extends VerticalLayout implements BeforeEnterObserver, A
         usersLabel.getStyle().set("font-weight", "bold");
         usersSelect = new MultiSelectListBox<>();
         usersSelect.setItems("1", "2", "3");
+        // Apply inline styles to penetrate shadow DOM
         usersSelect.addSelectionListener(event -> {
             if (!updatingFromUrl) {
                 updateUrlParameter("users", event.getValue());
